@@ -1,0 +1,133 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+}
+
+footer{
+    width: 100%;
+    background: #202020;
+    color: white;   
+    
+}
+
+.contenedor-footer-all{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px;
+}
+
+.contenedor-body{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Mas-informacion{
+    max-width: 400px;
+}
+
+.Mas-informacion h1{
+    font-size: 22px;
+}
+
+.Mas-informacion p{
+    font-size: 14px;
+    color: #C7C7C7;
+    margin-top: 20px;
+}
+
+.Redes-Sociales{
+    max-width: 400px;
+    
+}
+
+.Redes-Sociales h1{
+    font-size: 22px;
+}
+
+.row{
+    margin-top: 20px;
+    display: flex;
+}
+
+.row img{
+    width: 36px;
+    height: 36px;
+}
+
+.row label{
+    margin-top: 10px;
+    margin-left: 20px;
+    color: #C7C7C7;
+}
+
+.Informacion-contacto{
+    max-width: 400px;
+}
+
+.Informacion-contacto h1{
+    font-size: 22px;
+}
+
+.row2{
+    margin-top: 20px;
+    display: flex;
+}
+
+.row2 img{
+    width: 36px;
+    height: 36px;
+}
+
+.row2 label{
+    margin-top: 10px;
+    margin-left: 20px;
+    max-width: 140px;
+}
+
+.contenedor-footer{
+    width: 100%;  
+    background: #101010;
+}
+
+.footer{
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;  
+    padding: 20px;
+}
+
+.copyright{
+    color: #C7C7C7;
+}
+
+.copyright a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.informacion a{
+    text-decoration: none;
+    color: #C7C7C7;
+}
+
+
+@media screen and (max-width: 1100px){
+    
+    .contenedor-body{
+        flex-wrap: wrap;
+    }
+    
+    .Mas-informacion{
+        max-width: 100%;
+    }
+    
+    .Redes-Sociales,
+    .Informacion-contacto{
+        margin-top: 40px;
+    }
+}

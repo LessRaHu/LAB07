@@ -16,12 +16,22 @@ if (isset($_SESSION['id']) && isset($_SESSION['nombre'])) {
             $nuevaContrasena = $_POST['nueva_contrasena'];
 
             // Realiza la actualización en la base de datos
-            // Asegúrate de aplicar hash a la nueva contraseña antes de almacenarla en la base de datos
+            // Realiza la actualización en la base de datos
+        if (!empty($nuevaContrasena)) {
+            // Si se proporciona una nueva contraseña, actualízala con hash
             $hashedContrasena = password_hash($nuevaContrasena, PASSWORD_BCRYPT);
-            $sqlActualizar = "UPDATE usuarios SET nombre = '$nuevoNombre', email = '$nuevoEmail', telefono = '$nuevoTelefono', pass = '$hashedContrasena' WHERE id = " . $_SESSION['id'];
-            
+            $sqlActualizar = "UPDATE usuarios SET nombre = '$nuevoNombre', email = '$nuevoEmail', telefono = '$nuevoTelefono', password = '$hashedContrasena' WHERE id = " . $_SESSION['id'];
+        } else {
+            // Si no se proporciona una nueva contraseña, actualiza los demás datos
+            $sqlActualizar = "UPDATE usuarios SET nombre = '$nuevoNombre', email = '$nuevoEmail', telefono = '$nuevoTelefono' WHERE id = " . $_SESSION['id'];
+        }
+
+
             if (mysqli_query($enlace, $sqlActualizar)) {
                 echo "Información actualizada correctamente.";
+                // Recarga la página para reflejar los cambios actualizados
+                header("Location: cuenta.php");
+                exit();
             } else {
                 echo "Error al actualizar la información: " . mysqli_error($enlace);
             }
@@ -86,17 +96,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['nombre'])) {
                 <label for="nueva_contrasena">Nueva Contraseña:</label>
                 <input type="password" name="nueva_contrasena" placeholder="Dejar en blanco para mantener la actual">
             </div>
-            <div>
-                <button type="submit" name="editar">Guardar Cambios</button>
-            </div>
+            
         </form>
-        
-        <!-- Formulario para eliminar la cuenta -->
         <form method="post">
             <h2>Eliminar Cuenta</h2>
             <p>¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</p>
             <div>
                 <button type="submit" name="eliminar">Eliminar Cuenta</button>
+                <button type="submit" name="editar">Guardar Cambios</button>
+                <a href="logout.php">Salir de la cuenta</a>
+            </div>
             </div>
         </form>
     </div>

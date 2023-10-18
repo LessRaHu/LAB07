@@ -9,15 +9,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = $_POST['telefono'];
     $password = $_POST['password'];
 
-    // Validar que los campos requeridos no estén vacíos
     if (empty($nombre) || empty($email) || empty($password)) {
         header("Location: registro.php?error=Todos los campos son obligatorios");
         exit();
     }
+    
+    // Verificar si el correo electrónico ya está registrado
+    $check_email_sql = "SELECT * FROM usuarios WHERE email = '$email'";
+    $result = mysqli_query($enlace, $check_email_sql);
+    
+    if (mysqli_num_rows($result) > 0) {
+        // El correo electrónico ya está registrado, muestra un mensaje de error en el formulario
+        $error_message = "Este correo electrónico ya está registrado.";
 
+        // Redirige al usuario de vuelta al formulario de registro y pasa el mensaje de error como parámetro
+        header("Location: registro.php?error=" . urlencode($error_message));
+        exit();
+    }
+    
     // Hash de la contraseña (debes usar una técnica de almacenamiento segura)
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
+    
     // Insertar datos en la base de datos
     $sql = "INSERT INTO usuarios (nombre, email, telefono, password) VALUES ('$nombre', '$email', '$telefono', '$hashed_password')";
 

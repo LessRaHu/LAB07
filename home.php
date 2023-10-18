@@ -50,13 +50,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['nombre'])) {
     <div id = "container">
         <section>
             <div class = "box-1">
-                <img src ="../Pictures\Nintendo_logo_PNG6.png" width="180px" height="80px" class="logo_nintendo">
+                <img src ="Pictures\Nintendo_logo_PNG6.png" width="180px" height="80px" class="logo_nintendo">
                 <a href="cuenta.php" class="box-1-right">
     <i class="fa-solid fa-user"></i>
     <h1 style="font-size:23px">Cuenta</h1>
 </a>
             </div>  
-            <img src="../Pictures\Wallpaper.png" width="85%" height="86%" class="first_background">
+            <img src="Pictures\Wallpaper.png" width="85%" height="86%" class="first_background">
             <div class="singboard">     
                 <h1><?php
                     while($filas = mysqli_fetch_array($res_letrero)){
@@ -65,7 +65,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['nombre'])) {
 
 
                   ?></h1>    
-                <img src="../Pictures\Letrero.png" width="550px" height="250px" class="Letrero">
+                <img src="Pictures\Letrero.png" width="550px" height="250px" class="Letrero">
             </div>
 
             <div class = "introduction">

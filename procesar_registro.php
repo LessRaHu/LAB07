@@ -37,27 +37,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Registro exitoso, envía un mensaje de confirmación a WhatsApp
         $chatId = "51" . $telefono . "@c.us";
         $message = "¡$nombre, tu cuenta ha sido registrada con éxito! Bienvenido a nuestro servicio.";
-
-        // Configura los datos para enviar el mensaje a través de Green API
+        $url = 'https://api.green-api.com/waInstance1101819177/SendMessage/8821ad295ce345c7ad601e42b781789122326e4472d847d1bd';
         $data = [
             "chatId" => $chatId,
             "message" => $message
         ];
 
-        $options = [
-            'http' => [
-                'method' => 'POST',
+        $options = array(
+            'http' => array(
+                'method'  => 'POST',
                 'content' => json_encode($data),
-                'header' => "Content-Type: application/json\r\n" .
+                'header' =>  "Content-Type: application/json\r\n" .
                     "Accept: application/json\r\n"
-            ]
-        ];
+            )
+        );
 
-        $url = 'https://api.green-api.com/waInstance1101819177/SendMessage/8821ad295ce345c7ad601e42b781789122326e4472d847d1bd';
 
         // Realiza la solicitud POST para enviar el mensaje
         $context = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
+        $response = json_decode($result);
+
 
         // Redirige al usuario a la página de inicio de sesión
         header("Location: login.php");
